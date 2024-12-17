@@ -5,12 +5,14 @@ from src.logger import logging
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
+from src.components.data_transformation import Datatransformation
+
 
 @dataclass
 class dataingestionconfig:
     train_data_path : str=os.path.join('artifacts','train.csv')
     test_data_path : str=os.path.join('artifacts','test.csv')
-    raw_data_path : str=os.path.join('artifacts','data.csv') 
+    raw_data_path : str=os.path.join('artifacts','data.csv')
 
 class Dataingestion:
     def __init__(self):
@@ -42,4 +44,7 @@ class Dataingestion:
 
 if __name__ == '__main__':
     obj = Dataingestion()
-    obj.initiate_data_ingestion()
+    train_data, test_data = obj.initiate_data_ingestion()
+
+    data_transformations = Datatransformation()
+    data_transformations.initiate_data_transformation(train_data,test_data)
