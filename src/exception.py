@@ -27,4 +27,5 @@ if __name__ == '__main__':
      except Exception as e:
           logging.info('divided by zero')
           raise CustomException(e,sys)
+     
     
